@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inventario J&J — Control</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="page">
+  <div class="shell">
+
+    <!-- LOGIN -->
+    <div class="card login-wrap" id="loginCard">
+      <div class="logo-3d"><div class="jj">J&J</div></div>
+      <div class="welcome">Bienvenido al Control de Productos J&J</div>
+
+      <form class="login-form" onsubmit="event.preventDefault(); handleLogin();">
+        <input id="userInput" placeholder="Usuario">
+        <input id="passInput" type="password" placeholder="Contraseña">
+        <button class="btn-primary">Ingresar</button>
+      </form>
+
+      <div class="err" id="loginErr"></div>
+    </div>
+
+    <!-- PANEL -->
+    <div class="card panel-wrap hidden" id="panelCard">
+
+      <div class="topbar">
+        <h3 id="panelTitle">Panel de Inventario J&J</h3>
+        <div class="controls">
+          <button class="btn-small" onclick="switchMode('inventario')">Inventario</button>
+          <button class="btn-small" onclick="switchMode('ventas')">Ventas</button>
+          <button class="btn-small btn-danger" onclick="handleLogout()">Salir</button>
+        </div>
+      </div>
+
+      <!-- INVENTARIO -->
+      <div id="viewInventario">
+        <div class="panel-form">
+          <select id="prodSelect">
+            <option value="">Producto</option>
+            <option>Pilsen Callao</option>
+            <option>Cusqueña Trigo</option>
+            <option>Coca Cola 600ml</option>
+          </select>
+          <input id="qtyInput" type="number" placeholder="Cantidad">
+          <input id="priceInput" type="number" placeholder="Precio">
+          <select id="typeSelect">
+            <option value="entrada">Entrada</option>
+            <option value="salida">Salida</option>
+          </select>
+          <button class="btn-small" onclick="addMovement()">Registrar</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="movBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VENTAS -->
+      <div id="viewVentas" class="hidden">
+        <div class="panel-form">
+          <input id="saleProdSelect" placeholder="Producto">
+          <input id="saleUnitQty" type="number" placeholder="Unidades">
+          <input id="salePriceInput" type="number" placeholder="Precio">
+          <button class="btn-small" onclick="addSale()">Registrar</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Unidades</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="salesBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div class="table-wrap">
+        <h3>Clientes y Deudas</h3>
+
+        <div class="cd-form">
+          <input id="cd_name" placeholder="Cliente">
+          <input id="cd_detail" placeholder="Detalle">
+          <input id="cd_debt" placeholder="Debe">
+          <button class="btn-small" id="cd_add">Agregar</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Detalle</th>
+              <th>Debe</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cd_body"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="app.js"></script>
+</body>
+</html>
