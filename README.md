@@ -28,5 +28,5 @@ This project is built using **HTML, CSS, and JavaScript**, storing data locally 
 
 ---
 
-## 📂 Project Structure
+
 
